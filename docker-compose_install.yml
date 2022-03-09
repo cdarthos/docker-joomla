@@ -12,19 +12,18 @@ services:
       - MARIADB_USER=ead_user
       - MARIADB_PASSWORD=ead_password
       - MARIADB_DATABASE=ead_joomla
-    volumes:
-      - ./mariadb/db/:/docker-entrypoint-initdb.d/
+
   php:
     container_name: joomla
     build:
       context: ./joomla
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile_install
     depends_on:
       - mariadb
     links:
       - mariadb:db
     ports:
       - "8081:80"
-  #  volumes:
-  #    - ./joomla/app:/app
+    volumes:
+      - ./joomla/app:/app
 

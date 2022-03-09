@@ -1,0 +1,22 @@
+###### Installation de joomla
+
+
+Installation de l'application via le docker-compose_install.yml
+supprimer le contenue de ./joomla/app et de ./mariadb/db pour refaire une installation
+copie des fichier d'installations depuis l'archive dans ./joomla/app
+Point important de le fichier docker-compose.yml:
+le fichier /app est rendu accessible au container en lecture/ecriture
+
+=> Lancement de docker-compose.yml et suivie de l'installation via http://127.0.0.1:8080
+
+=> Récupération de la base sql:
+Depuis le repertoire "mariadb"
+docker ps # pour recuperer l'id du container
+docker exec 61be9e09d388 /usr/bin/mysqldump -u root --password=root ead_joomla > dump.sql
+
+#sur windows, ouvrir dump.sql dans notepad++ et le reenregistrer
+
+
+###### Lancement de l'application clé en main
+
+
