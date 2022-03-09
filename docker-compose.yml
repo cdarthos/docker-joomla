@@ -13,7 +13,7 @@ services:
   php:
     container_name: joomla
     build:
-      context: ./
+      context: ./joomla
       dockerfile: Dockerfile
     depends_on:
       - mariadb
