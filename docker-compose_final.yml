@@ -4,26 +4,23 @@ version: '3'
 services:
   mariadb:
     container_name: mariadb
-    build:
-      context: ./mariadb_install
-      dockerfile: Dockerfile
+    image: mariadb
     environment:
       - MARIADB_ROOT_PASSWORD=root
       - MARIADB_USER=ead_user
       - MARIADB_PASSWORD=ead_password
       - MARIADB_DATABASE=ead_joomla
-
+    volumes:
+      - ./mariadb/db/:/docker-entrypoint-initdb.d/
   php:
     container_name: joomla
-    build:
-      context: ./joomla
-      dockerfile: Dockerfile_install
+    image: darthos/joomla_php
     depends_on:
       - mariadb
     links:
       - mariadb:db
     ports:
       - "8081:80"
-    volumes:
-      - ./joomla/app:/app
+  #  volumes:
+  #    - ./joomla/app:/app
 
