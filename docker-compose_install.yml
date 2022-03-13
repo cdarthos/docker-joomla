@@ -5,8 +5,8 @@ services:
   mariadb:
     container_name: mariadb
     build:
-      context: ./mariadb_install
-      dockerfile: Dockerfile
+      context: ./mariadb
+      dockerfile: Dockerfile_install
     environment:
       - MARIADB_ROOT_PASSWORD=root
       - MARIADB_USER=ead_user
